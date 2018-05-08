@@ -2,9 +2,9 @@ import React from 'react';
 import { Component } from 'react';
 import * as BooksAPI from './BooksAPI';
 import './App.css';
-import ListBooks from "./ListBooks";
 import SearchInBooks from "./SearchInBooks";
 import {Route} from 'react-router-dom';
+import MainScreenBooks from "./MainScreenBooks";
 
 class BooksApp extends Component {
     state = {
@@ -25,7 +25,7 @@ class BooksApp extends Component {
         return (
             <div>
                 <Route exact path="/" render={() => (
-                    <ListBooks
+                    <MainScreenBooks
                         books = {this.state.books}
                     />
                 )}/>
