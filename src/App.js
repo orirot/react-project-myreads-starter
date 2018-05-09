@@ -26,10 +26,10 @@ class BooksApp extends Component {
             return b.id === updatedBook.id
         })
         book[0].shelf = event.target.value
+        BooksAPI.update(updatedBook, book[0].shelf)
         this.setState({
             books: books
         })
-        console.log(event.target.value)
     }
 
 
