@@ -31,7 +31,9 @@ class SearchInBooks extends Component{
     }
 
     render(){
-        const booksFromSearch = this.state
+        const booksFromSearch = this.state.booksFromSearch
+
+        const showingBooks = booksFromSearch.length > 0
 
         return(
             <div className="search-books">
@@ -53,12 +55,12 @@ class SearchInBooks extends Component{
                     </div>
                 </div>
                 <div className="search-books-results">
-                    {/*{booksFromSearch.length>0 && (*/}
+                    {showingBooks && (
                     <MainScreenBooks
                         books = {booksFromSearch}
                         bookShelfChanger = {this.props.bookShelfChanger}
                     />
-                    // )}
+                    )}
                 </div>
             </div>
         )
