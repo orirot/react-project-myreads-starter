@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import BooksGrid from "./BooksGrid";
-class ListBooks extends Component {
+class MainScreenBooks extends Component {
     static propTypes = {
         books: PropTypes.array.isRequired,
         bookShelfChanger: PropTypes.func.isRequired,
@@ -50,7 +50,6 @@ class ListBooks extends Component {
                         </div>
                     </div>
                     <div className="open-search">
-                        <a onClick={() => this.setState({showSearchPage: true})}>Add a book</a>
                         <Link to="/search" className="open-search">
                             Add a book
                         </Link>
@@ -64,4 +63,4 @@ class ListBooks extends Component {
 
 }
 
-export default ListBooks
+export default MainScreenBooks
