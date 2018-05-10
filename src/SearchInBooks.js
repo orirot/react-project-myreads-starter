@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import PropTypes from 'prop-types';
-import MainScreenBooks from "./MainScreenBooks";
+import BooksGrid from "./BooksGrid";
 
 class SearchInBooks extends Component{
 
@@ -33,7 +33,7 @@ class SearchInBooks extends Component{
     render(){
         const booksFromSearch = this.state.booksFromSearch
 
-        const showingBooks = booksFromSearch.length > 0
+        const showingBooks = booksFromSearch.length > 0 ? true : false
 
         return(
             <div className="search-books">
@@ -56,10 +56,10 @@ class SearchInBooks extends Component{
                 </div>
                 <div className="search-books-results">
                     {showingBooks && (
-                    <MainScreenBooks
-                        books = {booksFromSearch}
-                        bookShelfChanger = {this.props.bookShelfChanger}
-                    />
+                        <BooksGrid
+                            bookShelfChanger={this.props.bookShelfChanger}
+                            books={booksFromSearch}
+                        />
                     )}
                 </div>
             </div>
