@@ -8,27 +8,28 @@ import MainScreenBooks from "./MainScreenBooks";
 
 class BooksApp extends Component {
     state = {
-        books: []
+        shelvedBooks: []
     }
 
     componentDidMount() {
         BooksAPI.getAll()
             .then((books) => {
                 this.setState(() => ({
-                    books
+                    shelvedBooks: books
                 }));
             })
     }
 
     bookShelfChanger = (event, updatedBook) => {
-        const books = this.state.books
-        const book  = books.filter((b) => {
+        const { shelvedBooks } = this.state
+console.log({updatedBook, books: shelvedBooks})
+        const book  = shelvedBooks.find((b) => {
             return b.id === updatedBook.id
         })
-        book[0].shelf = event.target.value
+        book.shelf = event.target.value
         BooksAPI.update(updatedBook, book[0].shelf)
         this.setState({
-            books: books
+            shelvedBooks: shelvedBooks
         })
     }
 
@@ -39,7 +40,7 @@ class BooksApp extends Component {
                 <Route exact path="/" render={() => (
                     <MainScreenBooks
                         bookShelfChanger = {this.bookShelfChanger}
-                        books = {this.state.books}
+                        books = {this.state.shelvedBooks}
                     />
                 )}/>
 

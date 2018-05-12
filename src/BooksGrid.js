@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import get from 'lodash/get';
 class BooksGrid extends Component {
     static propTypes = {
         books: PropTypes.array.isRequired,
@@ -9,24 +10,21 @@ class BooksGrid extends Component {
 
     render() {
         const { books , bookShelfChanger} = this.props
-
         return (
-
-
-
             <div className="app">
-                {books.length > 0 && (
+                {books && books.length > 0 && (
                     <ol className="books-grid">
                         {books.map((book)=>(
 
-                        <li key ={book.title}>
+                        <li key ={book.id}>
                             <div className="book">
                                 <div className="book-top">
                                     <div className="book-cover" style={{
                                         width: 128,
                                         height: 193,
-                                        backgroundImage: `url(${book.imageLinks.thumbnail})`
-                                    }}></div>
+                                        backgroundImage: book.imageLinks && `url(${book.imageLinks.thumbnail})`
+                                        // backgroundImage: `url(${book.imageLinks.thumbnail})`
+                                    }}/>
                                     <div className="book-shelf-changer">
                                         <select onChange={(event) => (bookShelfChanger(event,book))}>
                                             <option value="none" disabled>Move to...</option>
@@ -38,12 +36,10 @@ class BooksGrid extends Component {
                                     </div>
                                 </div>
                                 <div className="book-title">{book.title}</div>
-                                <div className="book-authors">{book.authors[0]}</div>
+                                {book.authors && <div className="book-authors">{book.authors[0]}</div>}
                             </div>
                         </li>))}
-
                     </ol>)}
-
             </div>
         )
     }

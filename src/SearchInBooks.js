@@ -6,34 +6,43 @@ import BooksGrid from "./BooksGrid";
 
 class SearchInBooks extends Component{
 
+    constructor (props){
+        super(props);
+        this.state = {booksFromSearch: []}
+        this.onSearch = this.onSearch.bind(this)
+    }
+
     static propTypes = {
         bookShelfChanger: PropTypes.func.isRequired,
     }
-
-    state = {
-        // query: '',
-        booksFromSearch: []
-    }
-
+/*
     componentDidMount(){
-       this.state.booksFromSearch = []
-    }
+       // this.state.booksFromSearch = []
+        this.setState({ booksFromSearch: []})
+    }*/
 
-    doSome = (event) => {
+    onSearch = (event) => {
         const updatedQuery = event.target.value
-        BooksAPI.search(updatedQuery).then(
-            (books) => {
-                this.setState({
-                    booksFromSearch: books
-                })
-            }
-        )
+        if (updatedQuery && updatedQuery !== '') {
+            BooksAPI.search(updatedQuery.trim()).then(
+                (books) => {
+                    this.setState({
+                        booksFromSearch: books
+                    })
+                }
+            )
+        }else {
+            this.setState({
+                booksFromSearch: []
+            })
+        }
+
     }
 
     render(){
         const booksFromSearch = this.state.booksFromSearch
 
-        const showingBooks = booksFromSearch.length > 0 ? true : false
+        const showingBooks = booksFromSearch && booksFromSearch.length > 0 ? true : false
 
         return(
             <div className="search-books">
@@ -50,7 +59,7 @@ class SearchInBooks extends Component{
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-                        <input type="text" placeholder="Search by title or author" onChange={(event)=>(this.doSome(event))}/>
+                        <input type="text" placeholder="Search by title or author" onChange={this.onSearch}/>
 
                     </div>
                 </div>

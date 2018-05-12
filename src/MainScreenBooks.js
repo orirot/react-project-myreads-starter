@@ -27,7 +27,7 @@ class MainScreenBooks extends Component {
                                 <h2 className="bookshelf-title">Currently Reading</h2>
                                 <div className="bookshelf-books">
                                     <BooksGrid bookShelfChanger={bookShelfChanger} books={books.filter((book)=>(
-                                        book.shelf===("currentlyReading")
+                                        book.shelf==="currentlyReading"
                                     ))}/>
                                 </div>
                             </div>
@@ -35,7 +35,7 @@ class MainScreenBooks extends Component {
                                 <h2 className="bookshelf-title">Want to Read</h2>
                                 <div className="bookshelf-books">
                                     <BooksGrid bookShelfChanger={bookShelfChanger} books={books.filter((book)=>(
-                                        book.shelf===("wantToRead")
+                                        book.shelf==="wantToRead"
                                     ))}/>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@ class MainScreenBooks extends Component {
                                 <h2 className="bookshelf-title">Read</h2>
                                 <div className="bookshelf-books">
                                     <BooksGrid bookShelfChanger={bookShelfChanger} books={books.filter((book)=>(
-                                        book.shelf===("read")
+                                        book.shelf==="read"
                                     ))}/>
                                 </div>
                             </div>
