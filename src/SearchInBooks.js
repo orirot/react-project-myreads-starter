@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
-import PropTypes from 'prop-types';
 import BooksGrid from "./BooksGrid";
 
 class SearchInBooks extends Component{
@@ -12,18 +11,10 @@ class SearchInBooks extends Component{
         this.onSearch = this.onSearch.bind(this)
     }
 
-    static propTypes = {
-        bookShelfChanger: PropTypes.func.isRequired,
-    }
-/*
-    componentDidMount(){
-       // this.state.booksFromSearch = []
-        this.setState({ booksFromSearch: []})
-    }*/
-
     onSearch = (event) => {
         const updatedQuery = event.target.value
         if (updatedQuery && updatedQuery !== '') {
+            console.log("updatedQuery" + updatedQuery.trim())
             BooksAPI.search(updatedQuery.trim()).then(
                 (books) => {
                     this.setState({
@@ -39,6 +30,9 @@ class SearchInBooks extends Component{
 
     }
 
+    bookShelfChanger (event, updatedBook) {
+        BooksAPI.update(updatedBook, event.target.value)
+    }
     render(){
         const booksFromSearch = this.state.booksFromSearch
 
@@ -66,7 +60,7 @@ class SearchInBooks extends Component{
                 <div className="search-books-results">
                     {showingBooks && (
                         <BooksGrid
-                            bookShelfChanger={this.props.bookShelfChanger}
+                            bookShelfChanger={this.bookShelfChanger}
                             books={booksFromSearch}
                         />
                     )}
@@ -74,8 +68,6 @@ class SearchInBooks extends Component{
             </div>
         )
     }
-
-
 }
 
 export default SearchInBooks

@@ -22,7 +22,6 @@ class BooksApp extends Component {
 
     bookShelfChanger = (event, updatedBook) => {
         const { shelvedBooks } = this.state
-console.log({updatedBook, books: shelvedBooks})
         const book  = shelvedBooks.find((b) => {
             return b.id === updatedBook.id
         })
@@ -45,9 +44,7 @@ console.log({updatedBook, books: shelvedBooks})
                 )}/>
 
                 <Route path="/search"  render= {() => (
-                    <SearchInBooks
-                        bookShelfChanger = {this.bookShelfChanger}
-                    />
+                    <SearchInBooks/>
                 )}/>
 
             </div>
