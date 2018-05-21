@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import BooksGrid from "./BooksGrid";
+import PropTypes from 'prop-types';
 
 class SearchInBooks extends Component{
+
+    static propTypes = {
+        getBookShelf: PropTypes.func.isRequired,
+    }
 
     constructor (props){
         super(props);
@@ -60,6 +65,7 @@ class SearchInBooks extends Component{
                 <div className="search-books-results">
                     {showingBooks && (
                         <BooksGrid
+                            getBookShelf={this.props.getBookShelf}
                             bookShelfChanger={this.bookShelfChanger}
                             books={booksFromSearch}
                         />
