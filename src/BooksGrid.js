@@ -8,12 +8,6 @@ class BooksGrid extends Component {
         getBookShelf: PropTypes.func.isRequired,
     }
 
-    static shelfToOptionIndexMap = {
-        'currentlyReading' : '0',
-        'wantToRead' : '1',
-        'read' : '2',
-        'none' : '3',
-    };
 
     render() {
         const { books , bookShelfChanger, getBookShelf} = this.props

@@ -36,7 +36,25 @@ class SearchInBooks extends Component{
     }
 
     bookShelfChanger (event, updatedBook) {
+        debugger;
+        const {booksFromSearch} = this.state
+        const book = this.getBookFromSearchedBooks(updatedBook.id);
+        book.shelf = event.target.value
+        BooksAPI.update(updatedBook, book.shelf)
+        this.setState({
+            booksFromSearch: booksFromSearch
+        })
+
+
         BooksAPI.update(updatedBook, event.target.value)
+    }
+
+    getBookFromSearchedBooks(updatedBookId) {
+        const {booksFromSearch} = this.state
+        const book = booksFromSearch.find((b) => {
+            return b.id === updatedBookId
+        })
+        return book;
     }
     render(){
         const booksFromSearch = this.state.booksFromSearch
