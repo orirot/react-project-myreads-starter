@@ -14,6 +14,7 @@ class SearchInBooks extends Component{
         super(props);
         this.state = {booksFromSearch: []}
         this.onSearch = this.onSearch.bind(this)
+        this.bookShelfChanger = this.bookShelfChanger.bind(this)
     }
 
     onSearch = (event) => {
@@ -84,7 +85,7 @@ class SearchInBooks extends Component{
                     {showingBooks && (
                         <BooksGrid
                             getBookShelf={this.props.getBookShelf}
-                            bookShelfChanger={() => this.bookShelfChanger()}
+                            bookShelfChanger={this.bookShelfChanger}
                             books={booksFromSearch}
                         />
                     )}
