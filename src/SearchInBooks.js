@@ -84,7 +84,7 @@ class SearchInBooks extends Component{
                     {showingBooks && (
                         <BooksGrid
                             getBookShelf={this.props.getBookShelf}
-                            bookShelfChanger={this.bookShelfChanger}
+                            bookShelfChanger={() => this.bookShelfChanger()}
                             books={booksFromSearch}
                         />
                     )}

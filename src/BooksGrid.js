@@ -27,7 +27,7 @@ class BooksGrid extends Component {
                                         // backgroundImage: `url(${book.imageLinks.thumbnail})`
                                     }}/>
                                     <div className="book-shelf-changer">
-                                        <select value={getBookShelf(book.id)} onChange={(event) => (bookShelfChanger(event,book))}>
+                                        <select value={getBookShelf(book.id)} onChange={(event) => bookShelfChanger(event,book)}>
                                             <option value="none" disabled>Move to...</option>
                                             <option value="currentlyReading">Currently Reading</option>
                                             <option value="wantToRead">Want to Read</option>
