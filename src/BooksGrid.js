@@ -16,7 +16,6 @@ class BooksGrid extends Component {
                 {books && books.length > 0 && (
                     <ol className="books-grid">
                         {books.map((book)=>(
-                            // console.log("get book shelf: " + getBookShelf(book.id)) ||
                         <li key ={book.id}>
                             <div className="book">
                                 <div className="book-top">

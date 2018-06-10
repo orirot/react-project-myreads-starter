@@ -45,7 +45,6 @@ class BooksApp extends Component {
         if (book) {
             shelf = (book.shelf !== null && book.shelf !== '' && book.shelf) || null
         }
-        console.log("shelf: " + shelf + "book: " + book)
         return shelf
     }
 

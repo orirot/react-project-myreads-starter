@@ -20,7 +20,6 @@ class SearchInBooks extends Component{
     onSearch = (event) => {
         const updatedQuery = event.target.value
         if (updatedQuery && updatedQuery !== '') {
-            console.log("updatedQuery" + updatedQuery.trim())
             BooksAPI.search(updatedQuery.trim()).then(
                 (books) => {
                     this.setState({
