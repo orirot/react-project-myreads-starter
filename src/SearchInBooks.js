@@ -8,13 +8,13 @@ class SearchInBooks extends Component{
 
     static propTypes = {
         getBookShelf: PropTypes.func.isRequired,
+        bookShelfChanger: PropTypes.func.isRequired
     }
 
     constructor (props){
         super(props);
         this.state = {booksFromSearch: []}
         this.onSearch = this.onSearch.bind(this)
-        this.bookShelfChanger = this.bookShelfChanger.bind(this)
     }
 
     onSearch = (event) => {
@@ -36,29 +36,9 @@ class SearchInBooks extends Component{
 
     }
 
-    bookShelfChanger (event, updatedBook) {
-        debugger;
-        const {booksFromSearch} = this.state
-        const book = this.getBookFromSearchedBooks(updatedBook.id);
-        book.shelf = event.target.value
-        BooksAPI.update(updatedBook, book.shelf)
-        this.setState({
-            booksFromSearch: booksFromSearch
-        })
-
-
-        BooksAPI.update(updatedBook, event.target.value)
-    }
-
-    getBookFromSearchedBooks(updatedBookId) {
-        const {booksFromSearch} = this.state
-        const book = booksFromSearch.find((b) => {
-            return b.id === updatedBookId
-        })
-        return book;
-    }
     render(){
         const booksFromSearch = this.state.booksFromSearch
+        const { bookShelfChanger } = this.props
 
         const showingBooks = booksFromSearch && booksFromSearch.length > 0 ? true : false
 
@@ -85,7 +65,7 @@ class SearchInBooks extends Component{
                     {showingBooks && (
                         <BooksGrid
                             getBookShelf={this.props.getBookShelf}
-                            bookShelfChanger={this.bookShelfChanger}
+                            bookShelfChanger={(event, updatedBook) => {bookShelfChanger(event, updatedBook)}}
                             books={booksFromSearch}
                         />
                     )}

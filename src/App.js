@@ -45,7 +45,7 @@ class BooksApp extends Component {
         if (book) {
             shelf = (book.shelf !== null && book.shelf !== '' && book.shelf) || null
         }
-        console.log("shelf: " + shelf)
+        console.log("shelf: " + shelf + "book: " + book)
         return shelf
     }
 
@@ -63,6 +63,7 @@ class BooksApp extends Component {
                 <Route path="/search"  render= {() => (
                     <SearchInBooks
                         getBookShelf = {this.getBookShelf}
+                        bookShelfChanger = {this.bookShelfChanger}
                     />
                 )}/>
 
