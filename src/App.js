@@ -32,8 +32,10 @@ class BooksApp extends Component {
     bookShelfChanger = (event, updatedBook) => {
         const {shelvedBooks} = this.state
         const book = this.getBookFromShelvedBooks(updatedBook.id);
-        book.shelf = event.target.value
-        BooksAPI.update(updatedBook, book.shelf)
+        if (book){
+            book.shelf = event.target.value
+        }
+        BooksAPI.update(updatedBook, event.target.value)
         this.setState({
             shelvedBooks: shelvedBooks
         })
