@@ -36,6 +36,9 @@ class BooksApp extends Component {
             book.shelf = event.target.value
         }
         BooksAPI.update(updatedBook, event.target.value)
+            .then(()=> {
+                this.componentDidMount()
+            })
         this.setState({
             shelvedBooks: shelvedBooks
         })
